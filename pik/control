@@ -1,0 +1,116 @@
+#########################################################################
+#########################################################################
+#########################################################################
+#########################################################################
+#########################################################################
+############################# Yelmo 1.801 ###############################
+#########################################################################
+#########################################################################
+#########################################################################
+#########################################################################
+#########################################################################
+
+
+#########################################################################
+# Run control to check how equilibrated are the end states of the spinups.
+# dtt = 1 (but spin-up obtained with dtt = 5).
+#########################################################################
+runopt='-s -q short -w 20'
+fldr=output/control/ytill=-1/alex_spinup/
+
+jobrun ./runylmox ${runopt} -e ismip6 -n output/ismip6_alex/spinup_32km_102/0/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="transient_proj" transient_proj.scenario=ctrl transient_proj.time_end=20e3 hysteresis_proj.dtt=1.0 tf_corr_ant.pine=0.0 ytill.method=-1 yelmo.restart="/p/projects/megarun/jan/yelmox/yelmox_v1.801/output/ismip6_alex/spinup_32km_102/0/yelmo_restart.nc"
+
+#########################################################################
+# Run control to check how equilibrated are the end states of the spinups.
+# dtt = 5 (because spin-up obtained with dtt = 5).
+#########################################################################
+runopt='-s -q short -w 20'
+fldr=output/control/alex_spinup/dtt5
+
+jobrun ./runylmox ${runopt} -e ismip6 -n par/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="hysteresis_proj" hysteresis_proj.time_end=20e3 hysteresis_proj.dtt=5.0 hysteresis.dt2D_small_out=100 hysteresis.f_ta=1.0 hyster.dt_init=5e3 hyster.f_max=0.0 hyster.method="PI42" yelmo.restart="/p/projects/megarun/jan/yelmox/yelmox_v1.801/output/ismip6_alex/spinup_32km_102/0/yelmo_restart.nc"
+
+#########################################################################
+#########################################################################
+
+#########################################################################
+# Run control to check how equilibrated are the end states of the spinups.
+# See presentation 28.11.2022: best rmse spinup.
+#########################################################################
+runopt='-s -q short -w 20'
+fldr=output/control/spinup79
+
+jobrun ./runylmox ${runopt} -e ismip6 -n output/spinup/79/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="transient_proj" transient_proj.scenario=ctrl hysteresis_proj.dtt=1.0 tf_corr_ant.pine=0.0 yelmo.restart="/p/projects/megarun/jan/yelmox/yelmox_v1.801/output/spinup/79/yelmo_restart.nc"
+
+#########################################################################
+# Run control to check how equilibrated are the end states of the spinups.
+# See presentation 28.11.2022: first spinup ranking well with gamma_quadnl = 50 000 m/yr.
+#########################################################################
+runopt='-s -q short -w 20'
+fldr=output/control/spinup102
+
+jobrun ./runylmox ${runopt} -e ismip6 -n output/spinup/102/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="hysteresis_proj" hysteresis_proj.time_end=20e3 hysteresis_proj.dtt=1.0 hysteresis.dt2D_small_out=100 hyster.dt_init=5e3 hyster.f_max=0.0 hyster.method="PI42" yelmo.restart="/p/projects/megarun/jan/yelmox/yelmox_v1.801/output/spinup/102/yelmo_restart.nc"
+
+#########################################################################
+# Run control to check how equilibrated are the end states of the spinups.
+# See presentation 28.11.2022: first spinup ranking well with marine.
+#########################################################################
+runopt='-s -q short -w 20'
+fldr=output/control/spinup26
+
+jobrun ./runylmox ${runopt} -e ismip6 -n output/spinup/26/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="hysteresis_proj" hysteresis_proj.time_end=20e3 hysteresis_proj.dtt=1.0 hysteresis.dt2D_small_out=100 hyster.dt_init=5e3 hyster.f_max=0.0 hyster.method="PI42" yelmo.restart="/p/projects/megarun/jan/yelmox/yelmox_v1.801/output/spinup/26/yelmo_restart.nc"
+
+#########################################################################
+# Run control to check how equilibrated are the end states of the spinups.
+# See presentation 28.11.2022: first spinup ranking well with pmp and gamma = 14 500 m/yr.
+#########################################################################
+
+runopt='-s -q short -w 20'
+fldr=output/control/spinup69
+
+jobrun ./runylmox ${runopt} -e ismip6 -n output/spinup/69/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="hysteresis_proj" hysteresis_proj.time_end=20e3 hysteresis_proj.dtt=1.0 hysteresis.dt2D_small_out=100 hyster.dt_init=5e3 hyster.f_max=0.0 hyster.method="PI42" yelmo.restart="/p/projects/megarun/jan/yelmox/yelmox_v1.801/output/spinup/69/yelmo_restart.nc"
+
+#########################################################################
+#########################################################################
+
+#########################################################################
+# Run control to check how equilibrated are the end states of the spinups.
+# See presentation 28.11.2022: first spinup ranking well with pmp and gamma = 14 500 m/yr.
+#########################################################################
+
+runopt='-s -q short -w 20'
+fldr=output/control/ytill=-1/spinup_dtt=1/26
+
+jobrun ./runylmox ${runopt} -e ismip6 -n output/spinup_dtt1/26/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="transient_proj" transient_proj.scenario=ctrl transient_proj.time_end=20e3 hysteresis_proj.dtt=1.0 tf_corr_ant.pine=0.0 ytill.method=-1 yelmo.restart="/p/projects/megarun/jan/yelmox/yelmox_v1.801/output/spinup_dtt1/26/yelmo_restart.nc"
+
+#########################################################################
+# Run control to check how equilibrated are the end states of the spinups.
+# See presentation 28.11.2022: first spinup ranking well with pmp and gamma = 14 500 m/yr.
+#########################################################################
+
+runopt='-s -q short -w 20'
+fldr=output/control/ytill=-1/spinup_dtt=1/8
+
+jobrun ./runylmox ${runopt} -e ismip6 -n output/spinup_dtt1/8/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="transient_proj" transient_proj.scenario=ctrl transient_proj.time_end=20e3 hysteresis_proj.dtt=1.0 tf_corr_ant.pine=0.0 ytill.method=-1 yelmo.restart="/p/projects/megarun/jan/yelmox/yelmox_v1.801/output/spinup_dtt1/8/yelmo_restart.nc"
+
+#########################################################################
+# Run control to check how equilibrated are the end states of the spinups.
+# See presentation 28.11.2022: first spinup ranking well with pmp and gamma = 14 500 m/yr.
+#########################################################################
+
+runopt='-s -q short -w 20'
+fldr=output/control/ytill=-1/spinup_dtt=1/27
+
+jobrun ./runylmox ${runopt} -e ismip6 -n output/spinup_dtt1/27/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="transient_proj" transient_proj.scenario=ctrl transient_proj.time_end=20e3 hysteresis_proj.dtt=1.0 tf_corr_ant.pine=0.0 ytill.method=-1 yelmo.restart="/p/projects/megarun/jan/yelmox/yelmox_v1.801/output/spinup_dtt1/27/yelmo_restart.nc"
+
+#########################################################################
+#########################################################################
+
+
+#########################################################################
+# Run ensemble of controls.
+#########################################################################
+
+runopt='-s -q short -w 20'
+fldr=output/control/ensemble86_1
+
+jobrun ./runylmox ${runopt} -e ismip6 -n output/spinup/86/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="hysteresis_proj" hysteresis_proj.time_end=20e3 hysteresis_proj.dtt=1.0 hysteresis.dt2D_small_out=100 hyster.f_max=0.0 ymat.enh_shear=4.0,3.0,2.0 ytopo.calv_H_lim=200.0,100.0 ydyn.beta_q=0.2,0.4

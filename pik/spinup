@@ -1,0 +1,13 @@
+# Run spinup because the one of Alex displayed a drift
+runopt='-s -q short -w 20'
+fldr=output/spinupdtt5
+
+jobrun ./runylmox ${runopt} -e ismip6 -n par/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="spinup_ismip6" ydyn.ssa_lat_bc="marine","floating" ytopo.fmb_scale=1.0,3.0,10.0 ytopo.bmb_gl_method="nmp","pmp" marine_shelf.gamma_quad_nl=14.5e3,50e3,100e3 isos_ant.tau=10.0,100.0,1000.0
+
+jobrun ./runylmox ${runopt} -e ismip6 -n par/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="spinup_ismip6" ydyn.ssa_lat_bc="floating" ytopo.fmb_scale=3.0 ytopo.bmb_gl_method="pmp" marine_shelf.gamma_quad_nl=14.5e3
+
+# Running the same but with less params and dtt=1.0
+runopt='-s -q short -w 24'
+fldr=output/spinupdtt1
+
+jobrun ./runylmox ${runopt} -e ismip6 -n par/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="spinup_ismip6" spinup.dtt=1.0 ydyn.ssa_lat_bc="marine","floating" ytopo.fmb_scale=1.0,3.0,10.0 ytopo.bmb_gl_method="nmp","pmp" marine_shelf.gamma_quad_nl=14.5e3,50e3,100e3

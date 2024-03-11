@@ -1,0 +1,75 @@
+# Run AQEF retreat on top of Alex spinup. Investigate importance of atmosphere.
+runopt='-s -q long -w 100'
+fldr=output/aqef/retreat
+
+jobrun ./runylmox ${runopt} -e ismip6 -n par/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="hysteresis_proj" hysteresis_proj.time_end=300e3 hysteresis_proj.dtt=1.0 hysteresis.dt2D_small_out=100 hysteresis.f_ta=1.0,0.0 hyster.dt_init=5e3 hyster.method="PI42" yelmo.restart="/p/projects/megarun/jan/yelmox/yelmox_v1.801/output/ismip6_alex/spinup_32km_102/0/yelmo_restart.nc"
+
+# Run AQEF retreat on top of Alex spinup. Investigate importance of atmosphere.
+runopt='-s -q long -w 150'
+fldr=output/aqef/retreat/spinup79
+
+jobrun ./runylmox ${runopt} -e ismip6 -n output/spinup/79/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="hysteresis_proj" hysteresis_proj.time_end=300e3 hysteresis_proj.dtt=1.0 hysteresis.dt2D_small_out=100 hysteresis.f_ta=1.0,0.0 hyster.dt_init=5e3 hyster.method="PI42" yelmo.restart="/p/projects/megarun/jan/yelmox/yelmox_v1.801/output/spinup/79/yelmo_restart.nc"
+
+#########################################################################
+#########################################################################
+#########################################################################
+# Test the sensitivity of AQEF based on various spinups+control
+# Extend time far enough to see collapse of EAIS basins
+
+#########################################################################
+# Run AQEF retreat over a control made after the spinup of Alex.
+#########################################################################
+
+runopt='-s -q long -w 200'
+fldr=output/aqef/retreat/ytill.-1/control_alex/
+
+jobrun ./runylmox ${runopt} -e ismip6 -n output/control/ytill.-1/alex_spinup/0/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="hysteresis_proj" hysteresis_proj.time_end=200e3 hysteresis_proj.dtt=1.0 hysteresis.dt2D_small_out=200 tf_corr_ant.pine=0.0 ytill.method=-1 hyster.dt_init=1e3 hyster.method="PI42" hyster.df_dt_max=2e-4 hyster.f_max=10.0 isos_ant.tau=10,100,1000 yelmo.restart="/p/projects/megarun/jan/yelmox/yelmox_v1.801/output/control/ytill.-1/alex_spinup/0/yelmo_restart.nc"
+
+#########################################################################
+# Run AQEF retreat checking atmosphere "off" condition
+#########################################################################
+
+runopt='-s -q long -w 200'
+fldr=output/aqef/retreat/ytill.-1/control_alex/atmo_off
+
+jobrun ./runylmox ${runopt} -e ismip6 -n output/control/ytill.-1/alex_spinup/0/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="hysteresis_proj" hysteresis_proj.time_end=200e3 hysteresis_proj.dtt=1.0 hysteresis.dt2D_small_out=200 tf_corr_ant.pine=0.0 ytill.method=-1 hysteresis.f_ta=0.0 hyster.dt_init=1e3 hyster.method="PI42" hyster.df_dt_max=2e-4 hyster.f_max=10.0 yelmo.restart="/p/projects/megarun/jan/yelmox/yelmox_v1.801/output/control/ytill.-1/alex_spinup/0/yelmo_restart.nc"
+
+#########################################################################
+# Run AQEF retreat over a control with NMP.
+#########################################################################
+
+runopt='-s -q long -w 200'
+fldr=output/aqef/retreat/ytill.-1/control26/
+
+jobrun ./runylmox ${runopt} -e ismip6 -n output/control/ytill.-1/spinup_dtt.1/26/0/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="hysteresis_proj" hysteresis_proj.time_end=200e3 hysteresis_proj.dtt=1.0 hysteresis.dt2D_small_out=200 tf_corr_ant.pine=0.0 ytill.method=-1 hyster.dt_init=1e3 hyster.method="PI42" hyster.df_dt_max=2e-4 hyster.f_max=10.0 isos_ant.tau=10,100,1000 yelmo.restart="/p/projects/megarun/jan/yelmox/yelmox_v1.801/output/control/ytill.-1/spinup_dtt.1/26/0/yelmo_restart.nc"
+
+#########################################################################
+# Run AQEF retreat over a control with marine BC.
+#########################################################################
+
+runopt='-s -q long -w 200'
+fldr=output/aqef/retreat/ytill.-1/control8/
+
+jobrun ./runylmox ${runopt} -e ismip6 -n output/control/ytill.-1/spinup_dtt.1/8/0/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="hysteresis_proj" hysteresis_proj.time_end=200e3 hysteresis_proj.dtt=1.0 hysteresis.dt2D_small_out=200 tf_corr_ant.pine=0.0 ytill.method=-1 hyster.dt_init=1e3 hyster.method="PI42" hyster.df_dt_max=2e-4 hyster.f_max=10.0 isos_ant.tau=10,100,1000 yelmo.restart="/p/projects/megarun/jan/yelmox/yelmox_v1.801/output/control/ytill.-1/spinup_dtt.1/8/0/yelmo_restart.nc"
+
+#########################################################################
+# Run AQEF retreat over a control with floating and pmp.
+#########################################################################
+
+runopt='-s -q long -w 200'
+fldr=output/aqef/retreat/ytill.-1/control27/
+
+jobrun ./runylmox ${runopt} -e ismip6 -n output/control/ytill.-1/spinup_dtt.1/27/0/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="hysteresis_proj" hysteresis_proj.time_end=200e3 hysteresis_proj.dtt=1.0 hysteresis.dt2D_small_out=200 tf_corr_ant.pine=0.0 ytill.method=-1 hyster.dt_init=1e3 hyster.method="PI42" hyster.df_dt_max=2e-4 hyster.f_max=10.0 isos_ant.tau=10,100,1000 yelmo.restart="/p/projects/megarun/jan/yelmox/yelmox_v1.801/output/control/ytill.-1/spinup_dtt.1/27/0/yelmo_restart.nc"
+
+#########################################################################
+#########################################################################
+#########################################################################
+# Run AQEF retreat over a control with floating and pmp.
+#########################################################################
+#########################################################################
+#########################################################################
+
+runopt='-s -q long -w 200'
+fldr=output/aqef/retreat/ytill.-1/control27/
+
+jobrun ./runylmox ${runopt} -e ismip6 -n output/control/ytill.-1/spinup_dtt.1/27/0/yelmo_ismip6_Antarctica.nml -- -o ${fldr} -p ctrl.run_step="hysteresis_proj" hysteresis_proj.time_end=200e3 hysteresis_proj.dtt=1.0 hysteresis.dt2D_small_out=200 tf_corr_ant.pine=0.0 ytill.method=-1 hyster.dt_init=1e3 hyster.method="PI42" hyster.df_dt_max=2e-4 hyster.f_max=10.0 isos_ant.tau=10,100,1000 yelmo.restart="/p/projects/megarun/jan/yelmox/yelmox_v1.801/output/control/ytill.-1/spinup_dtt.1/27/0/yelmo_restart.nc"
